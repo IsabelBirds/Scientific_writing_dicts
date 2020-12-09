@@ -1,0 +1,143 @@
+---
+title: "Aspden_lab_from_paper"
+author: "Isabel Birds"
+date: "09/12/2020"
+output: html_document
+---
+
+```{r setup}
+library(rJava)
+library(tabulizer)
+library(knitr)
+library(tidyverse)
+library(stm)
+library(magrittr)
+library(tidytext)
+library(overviewR)
+library(readtext)
+library(quanteda)
+library(wesanderson)
+
+theme_set(
+  theme_minimal() + theme(
+    strip.background = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+)
+```
+
+https://nlp-bergen.netlify.app/#Knowing_terms_and_concepts 
+
+Scrape text from PDF
+
+```{r text}
+
+get_n_pages("../papers/aspden.pdf")
+#Extract to end of paper - no refs
+text <- extract_text("../papers/aspden.pdf", pages = c(1:16))
+#removed all refs
+text <- gsub("\\s*\\([^\\)]+\\)","",text)
+
+
+#preprocess and clean
+token <- tokens(text, 
+                remove_numbers = TRUE, 
+                remove_punct = TRUE, 
+                remove_symbols =  TRUE,
+                remove_url = TRUE, 
+                split_hyphens = TRUE)
+
+token_ungd <- tokens_select(
+  token,
+  c("[\\d-]","[[:punct:]]", "^.{1,2}$"),
+  selection = "remove",
+  valuetype = "regex",
+  verbose = TRUE
+)
+
+#Calculate a document-feature matrix (DFM)
+
+mydfm <- dfm(
+  # Take the token object
+  token_ungd,
+  # Lower the words
+  tolower = TRUE,
+  # Remove stop words
+  remove = stopwords("english")
+)
+
+head(mydfm)
+
+#Trim data: remove all the words that appear less than 7.5% of the time and more than 90% of the time
+mydfm.trim <-
+  dfm_trim(
+    mydfm,
+    min_docfreq = 0.075,
+    # min 7.5%
+    max_docfreq = 0.90,
+    #  max 90%
+    docfreq_type = "prop"
+  ) 
+
+```
+
+Visualise
+
+```{r plots}
+
+quanteda::textplot_wordcloud(
+  # Load the DFM object
+  mydfm,
+  # Define the minimum number the words have to occur
+  min_count = 3,
+  # Define the maximum number the words can occur
+  max_words = 500,
+  # Define a color
+  color = wes_palette("Darjeeling1")
+)
+
+# Get the 30 top features from the DFM
+freq_feature <- topfeatures(mydfm, 30)
+
+# Create a data.frame for ggplot
+data <- data.frame(list(
+  term = names(freq_feature),
+  frequency = unname(freq_feature)
+))
+
+# Plot the plot
+data %>%
+  # Call ggplot
+  ggplot() +
+  # Add geom_segment (this will give us the lines of the lollipops)
+  geom_segment(aes(
+    x = reorder(term, frequency),
+    xend = reorder(term, frequency),
+    y = 0,
+    yend = frequency
+  ), color = "grey") +
+  # Call a point plot with the terms on the x-axis and the frequency on the y-axis
+  geom_point(aes(x = reorder(term, frequency), y = frequency)) +
+  # Flip the plot
+  coord_flip() +
+  # Add labels for the axes
+  xlab("") +
+  ylab("Absolute frequency of the features")
+```
+
+
+
+
+Make dict 
+```{r dict}
+
+dict <- colnames(mydfm.trim)
+
+eng_dict <- read.delim("../dicts/wordsEnGb.txt", header=F, sep=c("\n"," ","\t",""))
+
+filter_dict <- dict[!dict %in% eng_dict$V1]
+
+write(filter_dict,file="../dicts/Aspden_dict.txt",append=TRUE)
+```
+
