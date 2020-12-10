@@ -30,6 +30,7 @@ biomart
 biopax
 bioproject
 biopython
+biotype
 BLASTn
 BLASTp
 blat
@@ -87,17 +88,25 @@ ensemblplants
 ensemblprotists
 entrez
 env
+epigenetic
+epigenetically
 etc
+eukaryote
+eukaryotes
 eukaryotic
 eurocarbdb
 europe
 european
 eutils
 exoglycosidase
+exon
+exonic
+exons
 expasy
 facetting
 fasta
 fastq
+fastqc
 fibonacci
 filesystem
 flybase
@@ -137,19 +146,23 @@ hdfs
 hiveql
 hmmer
 homeomorphic
+homologues
+homology
 hpc
 hsp
 hypothesisdriven
 ide
 imex
-in silico
-in vivo
 indentationerror
 interpro
 interproscan
+intron
+intronic
+introns
 ioerror
 iptmnet
 ipython
+isoforms
 iterable
 iubmb
 japan
@@ -166,6 +179,7 @@ knowledgebase
 lapply
 len
 linux
+localisation
 markov
 markup
 melanie
@@ -248,7 +262,7 @@ pir
 pirde
 pirsf
 plugin
-poly ribo seq
+poly 
 polysome
 posix
 postgresql
@@ -285,13 +299,13 @@ refsnp
 repeatmasker
 rexp
 rgb
-ribo seq
+ribo 
 ribosome
 rlims
 rna
 RNA
-rna seq
 rnorm
+RPKM
 rscript
 rstudio
 runif
@@ -311,6 +325,7 @@ setenv
 setwd
 sftp
 signaling
+silico
 snp
 snps
 sql
@@ -334,6 +349,10 @@ threonine
 tidyr
 tigrfams
 toolkit
+transcriptome
+transcriptomes
+transcriptomic
+translatome
 trembl
 tryosine
 tryptic

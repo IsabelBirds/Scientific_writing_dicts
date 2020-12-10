@@ -12,17 +12,40 @@ genomic
 genomics
 proteome
 proteomics
-in silico
-in vivo
+silico
+vivo
 oligonucleotide
 phylogeny
 encode
 gencode
 ensembl
 microarray
-rna seq
-ribo seq
 polysome
 ribosome
-poly ribo seq
-
+poly 
+ribo 
+seq
+transcriptome
+translatome
+bioinformatic
+homology
+eukaryotes
+eukaryotic
+eukaryote
+nucleotide
+RPKM
+epigenetic
+epigenetically
+exons
+introns
+exon
+intron
+intronic
+exonic
+isoforms
+biotype
+transcriptomic
+transcriptomes
+localisation
+fastqc
+homologues
