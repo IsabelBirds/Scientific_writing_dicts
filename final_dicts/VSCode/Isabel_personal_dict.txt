@@ -59,3 +59,13 @@ SRR1548659
 SRR1548660
 SRR1548661
 SRR3031122
+RNAs
+transcriptomic
+transcriptomes
+localisation
+categorised
+intronic
+homologues
+RBPs
+reinitiate
+metaplots
