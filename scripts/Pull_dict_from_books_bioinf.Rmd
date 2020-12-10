@@ -1,0 +1,100 @@
+---
+title: "Bioinf_from_books"
+author: "Isabel Birds"
+date: "10/12/2020"
+output: html_document
+---
+
+```{r setup}
+library(rJava)
+library(tabulizer)
+library(knitr)
+library(tidyverse)
+library(stm)
+library(magrittr)
+library(tidytext)
+library(overviewR)
+library(readtext)
+library(quanteda)
+library(wesanderson)
+
+theme_set(
+  theme_minimal() + theme(
+    strip.background = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+)
+```
+
+Index from a primer for comp bio
+
+```{r text}
+#Extract to end of papers - no refs
+primer <- extract_text("../papers/A-Primer-for-Computational-Biology.pdf", pages = c(425:436))
+protein_s <- extract_text("../papers/A-Primer-for-Computational-Biology.pdf",pages = 1,
+                          area = list(c(246.87342, 41.58228, 691.74684, 527.81013)))
+protein <- extract_text("../papers/Protein_Bioinformatics_Databases_Resources.pdf", pages = c(2:17), 
+                        area = list(c(53.88608, 47.84810, 701.77215, 531.56962)))
+
+
+#combine papers
+text <- c(primer,protein_s,protein)
+
+#removed all refs in brackets
+text <- gsub("\\s*\\([^\\)]+\\)","",text)
+
+#combine all words split over lines
+text <- gsub("-\n","",text)
+
+#preprocess and clean
+token <- tokens(text, 
+                remove_numbers = TRUE, 
+                remove_punct = TRUE, 
+                remove_symbols =  TRUE,
+                remove_url = TRUE, 
+                split_hyphens = TRUE)
+
+token_ungd <- tokens_select(
+  token,
+  c("[\\d-]","[[:punct:]]", "^.{1,2}$"),
+  selection = "remove",
+  valuetype = "regex",
+  verbose = TRUE
+)
+
+#Calculate a document-feature matrix (DFM)
+mydfm <- dfm(
+  # Take the token object
+  token_ungd,
+  # Lower the words
+  tolower = TRUE,
+  # Remove stop words
+  remove = stopwords("english")
+)
+
+head(mydfm)
+
+```
+
+Make dict 
+```{r dict}
+
+#prep dict
+dict <- colnames(mydfm)
+
+#open eng dict for filter
+eng_dict <- read.delim("../final_dicts/VSCode/wordsEnGb.txt", header=F, sep=c("\n"," ","\t",""))
+
+filter_dict <- dict[!dict %in% eng_dict$V1]
+filter_dict
+
+#open bioinf dict to add
+bioinf <- read.delim("../dict_store/bioinfo_terms.txt",header=F, sep=c("\n"," ","\t",""))
+
+filter_dict <- c(filter_dict,bioinf$V1) %>% sort() %>% unique()
+
+write(filter_dict,file="../final_dicts/VSCode/Bioinf_dict.txt")
+write(filter_dict,file="../final_dicts/MSWord/Bioinf_dict.dic")
+
+```

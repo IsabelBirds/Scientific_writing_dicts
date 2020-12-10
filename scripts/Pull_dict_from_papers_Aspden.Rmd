@@ -100,7 +100,7 @@ Make dict
 dict <- colnames(mydfm.trim)
 
 #open eng dict for filter
-eng_dict <- read.delim("../final_dicts/wordsEnGb.txt", header=F, sep=c("\n"," ","\t",""))
+eng_dict <- read.delim("../final_dicts/VSCode/wordsEnGb.txt", header=F, sep=c("\n"," ","\t",""))
 
 filter_dict <- dict[!dict %in% eng_dict$V1]
 filter_dict
@@ -110,7 +110,8 @@ asp_names <- read.delim("../dict_store/Aspden_names.txt",header=F, sep=c("\n"," 
 
 filter_dict <- c(filter_dict,asp_names$V1) %>% sort() %>% unique()
 
-write(filter_dict,file="../final_dicts/Aspden_dict.txt")
+write(filter_dict,file="../final_dicts/VSCode/Aspden_dict.txt")
+write(filter_dict,file="../final_dicts/MSWord/Aspden_dict.dic")
 ```
 
 Visualise
