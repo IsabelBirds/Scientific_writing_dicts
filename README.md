@@ -10,7 +10,7 @@ Contains:
 
 - A personal dictionary - sample names and terms I use or misspell a lot.
 - Aspden lab specific terms - currrently includes members and collaborator names, and words scraped from a few of our publications.
-- General bioinformatic terms - index from a primer comp bio, and a review of protein databases.
+- General bioinformatic terms - index from a primer for comp bio, and a review of protein databases.
 - Species list - names from ensembl. *To do - add flybase species*.
 
 
