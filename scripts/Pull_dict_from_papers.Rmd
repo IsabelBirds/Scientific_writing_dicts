@@ -36,11 +36,11 @@ Only include pages w/o references etc - unless you want them!
 
 ```{r text}
 #Extract to end of papers - no refs
-
 aspden <- extract_text("../papers/aspden.pdf", pages = c(1:16))
 lncRNA_review_s <- extract_text("../papers/lncRNA_review.pdf", page = 1, area = list(c(243.390,36.958,790.020,558.318 )))
 lncRNA_review <- extract_text("../papers/lncRNA_review.pdf", page = c(2:12))
 neuro <- extract_text("../papers/neuro_lncRNA.pdf", page = c(1:20),area=list(c(74,67,769,548)))
+
 #combine papers
 text <- c(aspden,lncRNA_review,neuro)
 
