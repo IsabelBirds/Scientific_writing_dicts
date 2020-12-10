@@ -1,16 +1,18 @@
 # Scientific writing dicts
 
  A stash of dictionaries for use in scientific writing.
+ Suggestions of useful papers appreciated.
 
-I plan to make:
+Some words are added manually, others by scraping relevant papers or books, and filtering out words already in the standard dictionary.
+Filtering performed using english dict from [Code Spell Checker](https://github.com/streetsidesoftware/cspell-dicts/blob/master/dictionaries/en_GB/src/wordsEnGb.txt).
+
+Contains:
 
 - A personal dictionary - sample names and terms I use or misspell a lot.
-- Aspden lab specific terms - names, common techniques and cell types.
-- General bioinformatic terms - software names, variables, terminology.
-- Species list - scientific names.
+- Aspden lab specific terms - currrently includes members and collaborator names, and words scraped from a few of our publications.
+- General bioinformatic terms - index from a primer comp bio, and a review of protein databases.
+- Species list - names from ensembl. *To do - add flybase species*.
 
-Some words will be added manually, others by scraping relevant papers or books, and filtering out words already in the standard dictionary.
-Filtering performed using english dict from [Code Spell Checker](https://github.com/streetsidesoftware/cspell-dicts/blob/master/dictionaries/en_GB/src/wordsEnGb.txt).
 
 ## VS Code
 
