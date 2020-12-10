@@ -49,3 +49,9 @@ transcriptomes
 localisation
 fastqc
 homologues
+Cutadapt
+FASTX
+Ribogalaxy 
+ggplot
+protr
+CCDS

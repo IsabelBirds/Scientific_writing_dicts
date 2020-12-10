@@ -84,7 +84,7 @@ Make dict
 dict <- colnames(mydfm)
 
 #open eng dict for filter
-eng_dict <- read.delim("../final_dicts/VSCode/wordsEnGb.txt", header=F, sep=c("\n"," ","\t",""))
+eng_dict <- read.delim("../dict_store/wordsEnGb.txt", header=F, sep=c("\n"," ","\t",""))
 
 filter_dict <- dict[!dict %in% eng_dict$V1]
 filter_dict
