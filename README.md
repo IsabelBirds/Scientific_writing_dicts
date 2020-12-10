@@ -18,8 +18,8 @@ Files in final_dicts/VSCode are for Code Spell Checker in VS Code. To add, edit 
 
     "cSpell.customUserDictionaries": [
         
-        {"name": "aspdenlab","path": "/Users/isabelbirds/Documents/GitHub/Scientific_writing_dicts/final_dicts/Aspden_dict.txt},
-        {"name": "isabel","path": "/Users/isabelbirds/Documents/GitHub/Scientific_writing_dicts/final_dict/Isabel_personal_dict.txt"}
+        {"name": "aspdenlab","path": "/Users/isabelbirds/Documents/GitHub/Scientific_writing_dicts/final_dicts/VSCode/Aspden_dict.txt},
+        {"name": "isabel","path": "/Users/isabelbirds/Documents/GitHub/Scientific_writing_dicts/final_dict/VSCode/Isabel_personal_dict.txt"}
     ]
 
 ## MS Word
