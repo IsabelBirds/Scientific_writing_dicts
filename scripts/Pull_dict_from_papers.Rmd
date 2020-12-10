@@ -31,14 +31,24 @@ https://nlp-bergen.netlify.app/#Knowing_terms_and_concepts
 
 Scrape text from PDF
 
-```{r text}
+To avoid headers on preprints or similar, use locate_areas to work out area to include.
+Only include pages w/o references etc - unless you want them!
 
-get_n_pages("../papers/aspden.pdf")
-#Extract to end of paper - no refs
-text <- extract_text("../papers/aspden.pdf", pages = c(1:16))
-#removed all refs
+```{r text}
+#Extract to end of papers - no refs
+
+aspden <- extract_text("../papers/aspden.pdf", pages = c(1:16))
+lncRNA_review_s <- extract_text("../papers/lncRNA_review.pdf", page = 1, area = list(c(243.390,36.958,790.020,558.318 )))
+lncRNA_review <- extract_text("../papers/lncRNA_review.pdf", page = c(2:12))
+neuro <- extract_text("../papers/neuro_lncRNA.pdf", page = c(1:20),area=list(c(74,67,769,548)))
+#combine papers
+text <- c(aspden,lncRNA_review,neuro)
+
+#removed all refs in brackets
 text <- gsub("\\s*\\([^\\)]+\\)","",text)
 
+#combine all words split over lines
+text <- gsub("-\n","",text)
 
 #preprocess and clean
 token <- tokens(text, 
@@ -57,7 +67,6 @@ token_ungd <- tokens_select(
 )
 
 #Calculate a document-feature matrix (DFM)
-
 mydfm <- dfm(
   # Take the token object
   token_ungd,
@@ -69,17 +78,39 @@ mydfm <- dfm(
 
 head(mydfm)
 
-#Trim data: remove all the words that appear less than 7.5% of the time and more than 90% of the time
+#Trim data: remove all the words that appear less than 5% of the time 
 mydfm.trim <-
   dfm_trim(
     mydfm,
-    min_docfreq = 0.075,
+    min_docfreq = 0.05,
     # min 7.5%
-    max_docfreq = 0.90,
+    #max_docfreq = 0.90,
     #  max 90%
     docfreq_type = "prop"
   ) 
 
+head(mydfm.trim)
+```
+
+
+Make dict 
+```{r dict}
+
+#prep dict
+dict <- colnames(mydfm.trim)
+
+#open eng dict for filter
+eng_dict <- read.delim("../final_dicts/wordsEnGb.txt", header=F, sep=c("\n"," ","\t",""))
+
+filter_dict <- dict[!dict %in% eng_dict$V1]
+filter_dict
+
+#open aspden dict to add
+asp_names <- read.delim("../dict_store/Aspden_names.txt",header=F, sep=c("\n"," ","\t",""))
+
+filter_dict <- c(filter_dict,asp_names$V1) %>% sort() %>% unique()
+
+write(filter_dict,file="../final_dicts/Aspden_dict.txt")
 ```
 
 Visualise
@@ -125,19 +156,3 @@ data %>%
   xlab("") +
   ylab("Absolute frequency of the features")
 ```
-
-
-
-
-Make dict 
-```{r dict}
-
-dict <- colnames(mydfm.trim)
-
-eng_dict <- read.delim("../dicts/wordsEnGb.txt", header=F, sep=c("\n"," ","\t",""))
-
-filter_dict <- dict[!dict %in% eng_dict$V1]
-
-write(filter_dict,file="../dicts/Aspden_dict.txt",append=TRUE)
-```
-

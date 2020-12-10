@@ -1,0 +1,28 @@
+bedtools
+samtools
+conda
+BLASTn
+BLASTp
+tBLASTn
+bowtie
+DNA
+RNA
+nucleotide
+genomic
+genomics
+proteome
+proteomics
+in silico
+in vivo
+oligonucleotide
+phylogeny
+encode
+gencode
+ensembl
+microarray
+rna seq
+ribo seq
+polysome
+ribosome
+poly ribo seq
+
