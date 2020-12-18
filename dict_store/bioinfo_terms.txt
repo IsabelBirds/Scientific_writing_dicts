@@ -55,3 +55,14 @@ Ribogalaxy
 ggplot
 protr
 CCDS
+upregulate
+upregulates
+downregulate
+downregulates
+crosslinking 
+ggplot2
+stringr
+dplyr
+stringr
+upsetr
+pseudogene

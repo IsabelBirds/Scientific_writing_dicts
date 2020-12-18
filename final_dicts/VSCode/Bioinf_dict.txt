@@ -47,6 +47,7 @@ catalog
 catalogs
 cath
 cbind
+CCDS
 center
 cerevisiae
 chebi
@@ -62,8 +63,10 @@ color
 conda
 cpu
 cran
+crosslinking 
 csv
 curation
+Cutadapt
 cytoscape
 cyverse
 dbsnp
@@ -74,6 +77,8 @@ depod
 diff
 DNA
 docstring
+downregulate
+downregulates
 dplyr
 drenda
 ebi
@@ -107,6 +112,7 @@ facetting
 fasta
 fastq
 fastqc
+FASTX
 fibonacci
 filesystem
 flybase
@@ -119,6 +125,8 @@ geneids
 genomic
 genomics
 gff
+ggplot
+ggplot2
 ggsave
 gitignore
 glycan
@@ -280,7 +288,9 @@ proteomes
 proteomexchange
 proteomic
 proteomics
+protr
 pseudocode
+pseudogene
 psicquic
 psp
 ptm
@@ -300,6 +310,7 @@ repeatmasker
 rexp
 rgb
 ribo 
+Ribogalaxy 
 ribosome
 rlims
 rna
@@ -372,6 +383,9 @@ uniq
 uniref
 unix
 unlist
+upregulate
+upregulates
+upsetr
 usemethod
 valueerror
 vcf
