@@ -1,7 +1,5 @@
 # Scientific writing dicts
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/IsabelBirds/Scientific_writing_dicts/HEAD?urlpath=rstudio)
-
  A stash of dictionaries for use in scientific writing.
  Suggestions of useful papers appreciated.
 
