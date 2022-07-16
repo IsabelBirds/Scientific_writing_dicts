@@ -1,5 +1,5 @@
 install.packages("rJava")
-install.packages("tabulizer")
+install.packages("~/Downloads/rtracklayer_1.53.1.tar.gz",repos=NULL, type="source")
 install.packages("knitr")
 install.packages("tidyverse")
 install.packages("magrittr")
